@@ -149,9 +149,9 @@ def main():
     y_or = 0
     z_or = 0
 
-    rotated_x_theta = 0
-    rotated_y_theta = 0
-    rotated_z_theta = 0
+    #rotated_x_theta = 0
+    #rotated_y_theta = 0
+    #rotated_z_theta = 0
 
     while True:
         for event in pygame.event.get():
@@ -190,7 +190,7 @@ def main():
             # GYRO_RESOLUATION_4 = 264.4
             gyro_reso = GYRO_RESOLUATION_1
 
-            acc_reso = 415
+            #acc_reso = 415
             DATA_INTERVAL = 0.0625
 
             #xyz在时间间隔内的角速度
