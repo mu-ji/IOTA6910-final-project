@@ -63,7 +63,7 @@ def main():
     glTranslatef(0.0, 0.0, -5)
 
     # Connect to the serial port
-    ser = serial.Serial('COM6', 115200)  # Replace 'COM3' with your serial port and baud rate
+    ser = serial.Serial('COM12', 115200)  # Replace 'COM3' with your serial port and baud rate
 
     rawFrame = []
     last_xtheta = 0
@@ -83,25 +83,22 @@ def main():
         rawFrame += byte 
         
         if rawFrame[-2:]==[13, 10]:
-            if len(rawFrame) == 20:
+            if len(rawFrame) == 14:
                             
-                (x_gyro, y_gyro, z_gyro, x_acc, y_acc, z_acc, x_mag, y_mag, z_mag) = struct.unpack('>hhhhhhhhh', bytes(rawFrame[:-2]))
+                (x_gyro, y_gyro, z_gyro, x_acc, y_acc, z_acc) = struct.unpack('>hhhhhh', bytes(rawFrame[:-2]))
                         
                 # debug info
-                output = 'gyr_x={0:<9} gyr_y={1:<9} gyr_z={2:<9} acc_x={3:<9} acc_y={4:<9} acc_z={5:<9} mag_x={6:<9} mag_y={7:<9} mag_z={8:<9}'.format(
+                output = 'gyr_x={0:<9} gyr_y={1:<9} gyr_z={2:<6} acc_x={3:<6} acc_y={4:<6} acc_z={5:<6}'.format(
                     x_gyro,
                     y_gyro,
                     z_gyro,
                     x_acc,
                     y_acc,
-                    z_acc,
-                    x_mag,
-                    y_mag,
-                    z_mag
+                    z_acc
                 )
                 
             rawFrame = []
-            print(x_gyro,y_gyro,z_gyro,x_acc,y_acc,z_acc,x_mag,y_mag,z_mag)
+            print(x_gyro,y_gyro,z_gyro,x_acc,y_acc,z_acc)
             # GYRO_RESOLUATION_0 = 16.4
             GYRO_RESOLUATION_1 = 32.8
             # GYRO_RESOLUATION_2 = 65.6
