@@ -104,10 +104,10 @@ def main():
             # GYRO_RESOLUATION_4 = 264.4
             gyro_reso = GYRO_RESOLUATION_1
 
-            #acc_reso = 4096
-            #x_acc = float(x_acc)/float(4096)
-            #y_acc = float(y_acc)/float(4096)
-            #z_acc = float(z_acc)/float(4096)
+            #acc_reso = 415
+            #x_acc = float(x_acc)/float(acc_reso)
+            #y_acc = float(y_acc)/float(acc_reso)
+            #z_acc = float(z_acc)/float(acc_reso)
 
             DATA_INTERVAL = 0.0625
 
