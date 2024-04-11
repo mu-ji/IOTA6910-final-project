@@ -66,9 +66,6 @@ def main():
     ser = serial.Serial('COM12', 115200)  # Replace 'COM3' with your serial port and baud rate
 
     rawFrame = []
-    last_xtheta = 0
-    last_ytheta = 0
-    last_ztheta = 0
 
     while True:
 
@@ -77,7 +74,7 @@ def main():
                 pygame.quit()
                 quit()
 
-        # Read gyroscope measurements from the serial port
+        # Read gyroscope and accelerometer measurements from the serial port
 
         byte  = ser.read(1)        
         rawFrame += byte 
@@ -107,15 +104,19 @@ def main():
             # GYRO_RESOLUATION_4 = 264.4
             gyro_reso = GYRO_RESOLUATION_1
 
-            acc_reso = 415
+            #acc_reso = 4096
+            #x_acc = float(x_acc)/float(4096)
+            #y_acc = float(y_acc)/float(4096)
+            #z_acc = float(z_acc)/float(4096)
+
             DATA_INTERVAL = 0.0625
 
             x_gyro = DATA_INTERVAL*float(x_gyro)/float(gyro_reso)
             y_gyro = DATA_INTERVAL*float(y_gyro)/float(gyro_reso)
             z_gyro = DATA_INTERVAL*float(z_gyro)/float(gyro_reso)
 
-            roll = math.atan2(float(y_acc),float(z_acc))
-            pitch = -math.atan2(float(x_acc),((float(y_acc)**2 + float(z_acc)**2))**(0.5))
+            #roll = math.atan2(float(y_acc),float(z_acc))
+            #pitch = -math.atan2(float(x_acc),((float(y_acc)**2 + float(z_acc)**2))**(0.5))
             
             glRotatef(x_gyro, 1, 0, 0)
             glRotatef(y_gyro, 0, 1, 0)
